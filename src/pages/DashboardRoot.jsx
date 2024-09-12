@@ -3,7 +3,7 @@ import Icon from "../components/atom/Icon";
 import NavigationLink from "../components/atom/NavigationLink";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import {logoutUser} from "../Store/UserSlice.js";
+import { logoutUser } from "../store/UserSlice";
 
 const DashboardRoot = () => {
   const dispatch = useDispatch();
