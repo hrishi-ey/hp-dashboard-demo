@@ -92,6 +92,7 @@ export const loginUser = createAsyncThunk(
       user = await client.user.currentWithEffectiveRoles();
       const inv = await client.inventory.list({pageSize: 500, withChildren: true, withParents: true});
 
+      console.log("test 1");
       // inv.data.sort((a,b) => {
       //   if(a.name < b.name) {return -1;}
       //   if(a.name > b.name) {return 1;}
