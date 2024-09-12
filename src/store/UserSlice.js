@@ -86,7 +86,7 @@ export const loginUser = createAsyncThunk(
       // client = new Client(auth, URL);
       // client.setAuth(auth);
       // const fetchClient = client.core;
-      client = await Client.authenticateViaOAuthInternal({user: creds.email, password: creds.password}, "https://dev.hennypenny.com");
+      client = await Client.authenticateViaOAuthInternal({user: creds.email, password: creds.password}, URL);
       // let auth = new CookieAuth();
       
       user = await client.user.currentWithEffectiveRoles();
