@@ -31,11 +31,6 @@ const DashboardRoot = () => {
               </NavLink>
             </li>
             <li className="py-2">
-              <NavLink to="/" end>
-                {({isActive}) => <NavigationLink isActive={isActive} icon="search" text="Base" />}  
-              </NavLink>
-            </li>
-            <li className="py-2">
               <NavLink to="/dashboard" end>
                 {({isActive}) => <NavigationLink isActive={isActive} icon="dashboard" text="Dashboard" />}  
               </NavLink>

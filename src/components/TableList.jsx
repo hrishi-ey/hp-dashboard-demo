@@ -175,7 +175,7 @@ const TableList = ({ dataType, data = [] }) => {
       <p className="w-[100px] text-center">Predictions</p>
       <div className="w-[50px] text-right"></div>
     </div>;
-    rows = data && data.length > 0 ? data.map((d, i) => <div id={d.id} className="flex items-center py-1 border-b border-b-searchinputstroke/[0.5]">
+    rows = data && data.length > 0 ? data.map((d, i) => <div key={d.id} id={d.id} className="flex items-center py-1 border-b border-b-searchinputstroke/[0.5]">
         <div className="flex-grow">
           <p className="text-[12px]">{d.address.name}</p>
           <p className="text-white/[0.7] text-[12px]">{d.address.line1}</p>
@@ -208,7 +208,7 @@ const TableList = ({ dataType, data = [] }) => {
       <div className="w-[50px]"></div>
     </div>;
     rows = data && data.length > 0 ? data.map((d, i) => {
-      return <div id={d.id} className="flex items-center py-1 border-b border-b-searchinputstroke/[0.5]">
+      return <div key={d.id} id={d.id} className="flex items-center py-1 border-b border-b-searchinputstroke/[0.5]">
         <div className="flex-grow">
           <p className="text-[12px]">{d.address.name}</p>
           <p className="text-white/[0.7] text-[12px]">{d.address.line1}</p>
@@ -280,7 +280,7 @@ const TableList = ({ dataType, data = [] }) => {
       <div className="w-[50px]"></div>
     </div>;
     rows = data && data.length > 0 ? data.map((d, i) => {
-      return <div id={d.id} className="flex items-center py-1 border-b border-b-searchinputstroke/[0.5]">
+      return <div key={d.id} id={d.id} className="flex items-center py-1 border-b border-b-searchinputstroke/[0.5]">
         <div className="w-[100px] text-center">
           <img src={d.image ? d.image : machine} className="inline-block h-[32px]" />
         </div>

@@ -10,7 +10,3 @@
     @apply bg-body;
   }
 }
-
-svg {
-  overflow: visible!important;
-}

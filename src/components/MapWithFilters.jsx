@@ -7,13 +7,13 @@ const MapWithFilters = ({ stores }) => {
       <header className="w-full flex items-center justify-between">
         <div>
           <select className="bg-input px-6 py-1 rounded-md mr-3" name="uptime">
-            <option><span className="text-[12px] text-sidebaricontext">Uptime</span></option>
+            <option>Uptime</option>
           </select>
           <select className="bg-input px-6 py-1 rounded-md mr-3" name="operation">
-            <option><span className="text-[12px] text-sidebaricontext">Operation</span></option>
+            <option>Operation</option>
           </select>
           <select className="bg-input px-6 py-1 rounded-md mr-3" name="efficiency">
-            <option><span className="text-[12px] text-sidebaricontext">Efficiency</span></option>
+            <option>Efficiency</option>
           </select>
         </div>
         <button className="w-[28px] h-[28px] rounded-full border border-hlblue flex items-center justify-center">
