@@ -76,7 +76,8 @@ export const loginUser = createAsyncThunk(
   "user/loginUser",
   async(creds) => {
     try {
-
+      console.log("test 1");
+      
       // const auth = new CookieAuth({
       //   user: creds.email,
       //   password: creds.password,
@@ -86,13 +87,12 @@ export const loginUser = createAsyncThunk(
       // client = new Client(auth, URL);
       // client.setAuth(auth);
       // const fetchClient = client.core;
-      client = await Client.authenticateViaOAuthInternal({user: creds.email, password: creds.password}, URL);
+      client = await Client.authenticateViaOAuthInternal({user: creds.email, password: creds.password}, "https://dev.hennypenny.com");
       // let auth = new CookieAuth();
       
       user = await client.user.currentWithEffectiveRoles();
       const inv = await client.inventory.list({pageSize: 500, withChildren: true, withParents: true});
 
-      console.log("test 1");
       // inv.data.sort((a,b) => {
       //   if(a.name < b.name) {return -1;}
       //   if(a.name > b.name) {return 1;}
