@@ -29,6 +29,7 @@ const Dashboard = () => {
   }
 
   useEffect(() => {
+    
     var updatedData = {};
     var updatedList = [];
     if(ownerType !== null) {
@@ -51,9 +52,11 @@ const Dashboard = () => {
         setTableListData(updatedList);
         setTableDataType("stores");
       }
-      if(ownerType === "stores") {
+      if(ownerType === "store") {
+        
         for (let index = 0; index < userData.inventory.stores.children.length; index++) {
           let element = userData.inventory.stores.children[index];
+          
           if(element.id === id) {
             for(var k in element) {
               updatedData[k] = element[k];
@@ -62,10 +65,14 @@ const Dashboard = () => {
         }
         for (let index = 0; index < userData.inventory.devices.children.length; index++) {
           let element = userData.inventory.devices.children[index];
+          console.log(element.parentId);
+          
           if(element.parentId && element.parentId === id) {
             updatedList.push(element);
           }
         }
+        console.log(updatedList, "-- updated list");
+        
         setDataSet(updatedData);
         setTableListData(updatedList);
         setTableDataType("devices");
@@ -90,6 +97,10 @@ const Dashboard = () => {
   const showFullMap = () => {
     setPopupData(<div onClick={() => { setPopupData(null); }} className="fixed left-0 top-0 right-0 bottom-0 backdrop-blur-sm bg-black/[0.5] z-40 flex items-center justify-center"><MapWithFilters stores={userData.inventory.stores.children} /></div>);
   }
+
+  useEffect(() => {
+    console.log(tableDataType, tableListData);
+  }, [tableDataType]);
 
   return (
     <>

@@ -91,7 +91,10 @@ export const loginUser = createAsyncThunk(
       // let auth = new CookieAuth();
       
       user = await client.user.currentWithEffectiveRoles();
-      const inv = await client.inventory.list({pageSize: 500, withChildren: true, withParents: true});
+      let inv = await client.inventory.list({pageSize: 500, withChildren: true, withParents: true});
+
+      console.log(inv);
+      
 
       // inv.data.sort((a,b) => {
       //   if(a.name < b.name) {return -1;}
@@ -233,6 +236,8 @@ export const loginUser = createAsyncThunk(
             for (let i1 = 0; i1 < inventory.stores.children.length; i1++) {
               const store = inventory.stores.children[i1];
               const childRefs = store.childAssets.references;
+              console.log(store);
+              
               for (let i2 = 0; i2 < childRefs.length; i2++) {
                 const childRef = childRefs[i2];
                 if(childRef.managedObject.id === element.id) {

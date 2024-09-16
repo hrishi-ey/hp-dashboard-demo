@@ -4,10 +4,13 @@ import NavigationLink from "../components/atom/NavigationLink";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../store/UserSlice";
+import ComingSoon from "../components/ComingSoon";
 
 const DashboardRoot = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [comingSoon, setComingSoon] = useState(null);
 
   const [showUserPopup, setShowUserPopup] = useState(false);
 
@@ -17,8 +20,13 @@ const DashboardRoot = () => {
     });
   };
 
+  const showComingSoonPopup = () => {
+    setComingSoon(<div onClick={() => { setComingSoon(null); }} className="fixed left-0 top-0 right-0 bottom-0 backdrop-blur-sm bg-black/[0.5] z-40 flex items-center justify-center"><ComingSoon /></div>);
+  }
+
   return (
     <article className="relative w-full h-[100lvh] overflow-y-auto">
+      {comingSoon ? comingSoon : ""}
       <aside className="fixed left-0 top-0 bottom-0 w-[220px] max-w-[220px] px-[12px] border-r border-r-black flex flex-col bg-panel">
         <header className="w-full py-4 text-center">
           <a href="/"><img src="/src/assets/img/cont/henny-penny-logo.svg" className="inline-block outline-none" alt="" /></a>
@@ -26,9 +34,9 @@ const DashboardRoot = () => {
         <nav className="grow w-full">
           <ul className="w-full">
             <li className="py-2">
-              <NavLink to="/dashboard/search" end>
-                {({isActive}) => <NavigationLink isActive={isActive} icon="search" text="Search" />}  
-              </NavLink>
+              <div onClick={() => { showComingSoonPopup(); }}>
+                <NavigationLink icon="search" text="Search" />  
+              </div>
             </li>
             <li className="py-2">
               <NavLink to="/dashboard" end>
@@ -56,9 +64,9 @@ const DashboardRoot = () => {
               </NavLink>
             </li>
             <li className="py-2">
-              <NavLink to="/dashboard/messages" end>
-                {({isActive}) => <NavigationLink isActive={isActive} icon="messages" text="Messages" />}  
-              </NavLink>
+              <div onClick={() => { showComingSoonPopup(); }}>
+                <NavigationLink icon="messages" text="Messages" />  
+              </div>
             </li>
             <li className="py-2">
               <NavLink to="/dashboard/notifications" end>
@@ -66,9 +74,9 @@ const DashboardRoot = () => {
               </NavLink>
             </li>
             <li className="py-2">
-              <NavLink to="/dashboard/settings" end>
-                {({isActive}) => <NavigationLink isActive={isActive} icon="settings" text="settings" />}  
-              </NavLink>
+              <div onClick={() => { showComingSoonPopup(); }}>
+                <NavigationLink icon="settings" text="settings" />
+              </div>
             </li>
           </ul>
         </nav>

@@ -42,7 +42,7 @@ const Operation = () => {
     <div className="p-2 h-full flex flex-col gap-2">
       {popupData ? popupData : ""}
       <div className="flex-grow flex gap-2 min-h-[220px]">
-      <article className="flex-grow w-1/4">
+        <article className="flex-grow w-1/4">
           {dataSet !== null ? <InfoChartPanel title="Vat Utilization" num={dataSet.vatUtilization} /> : <InfoChartPanel title="Uptime" num={90} />}
         </article>
         <article className="flex-grow w-1/4">
@@ -65,23 +65,23 @@ const Operation = () => {
               <p className="text-[10px] text-left text-sidebaricontext">
                 {getCurrentDateTime()}
               </p>
-              <div className="flex-grow gap-6 flex items-center justify-center text-left">
-                <div className="">
-                  <p className="text-sidebaricontext text-[12px] mb-2">Registered Equipments</p>
+              <div className="flex-grow gap-6 flex items-center text-left mt-6">
+                <div className="w-1/2">
+                  <p className="text-sidebaricontext text-[10px] mb-2">Registered Equipments</p>
                   <h1 className="text-white text-3xl">{dataSet && dataSet.registeredEquipements ? dataSet.registeredEquipements : ""}</h1>
                 </div>
-                <div className="">
-                  <p className="text-sidebaricontext text-[12px] mb-2">Online Equipments</p>
+                <div className="w-1/2">
+                  <p className="text-sidebaricontext text-[10px] mb-2">Online Equipments</p>
                   <h1 className="text-white text-3xl">{dataSet && dataSet.onlineEquipments ? dataSet.onlineEquipments : ""}</h1>
                 </div>
               </div>
-              <div className="flex-grow gap-6 flex items-center justify-center text-left">
-                <div className="">
-                  <p className="text-sidebaricontext text-[12px] mb-2">Operators</p>
+              <div className="flex-grow gap-6 flex items-center text-left mt-2">
+                <div className="w-1/2">
+                  <p className="text-sidebaricontext text-[10px] mb-2">Operators</p>
                   <h1 className="text-white text-3xl">{dataSet && dataSet.operators ? dataSet.operators : ""}</h1>
                 </div>
-                <div className="">
-                  <p className="text-sidebaricontext text-[12px] mb-2">Locations</p>
+                <div className="w-1/2">
+                  <p className="text-sidebaricontext text-[10px] mb-2">Locations</p>
                   <h1 className="text-white text-3xl">{dataSet && dataSet.locations ? dataSet.registeredEquipements : ""}</h1>
                 </div>
               </div>
@@ -89,8 +89,8 @@ const Operation = () => {
           </div>
         </article>
       </div>
-      <div className="flex-grow-2 flex gap-2">
-        <div className="flex-grow-2">
+      <div className="flex-grow-2 flex gap-2 w-full">
+        <div className="w-3/4">
           <article className="w-full h-full bg-panel border border-panelborder">
             <PanelHeader text="Locations" />
             <div className="p-3">

@@ -81,7 +81,7 @@ const TableList = ({ dataType, data = [] }) => {
           <span onClick={handleShowPredictions} className="inline-block w-[22px] h-[22px] border border-hlblue rounded-full text-center cursor-pointer"><Icon name="predictionsArrow" size={22} /></span>
         </div>
         <div className="text-right w-[50px]">
-          <span onClick={() => { handleShowDetails("stores", d.id); }} className="inline-block w-[22px] h-[22px] bg-hlblue rounded-full cursor-pointer"><Icon name="linkChevronRight" size={22} /></span>
+          <span onClick={() => { handleShowDetails("store", d.id); }} className="inline-block w-[22px] h-[22px] bg-hlblue rounded-full cursor-pointer"><Icon name="linkChevronRight" size={22} /></span>
         </div>
       </div>
   }): <p>No data found</p>;

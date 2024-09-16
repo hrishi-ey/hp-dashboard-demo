@@ -10,7 +10,9 @@ const DonutChart = ({ num = 90, width = 200, height = 180 }) => {
   const startAngle = 180 + 30;
   const endAngle = -30;
 
-  const chartSize = {width: width, height: height};
+  const halfWidth = width / 2 - 6;
+  const halfHeight = height / 2;
+  
 
   return (
     <ResponsiveContainer width={width} height={height}>
@@ -18,12 +20,12 @@ const DonutChart = ({ num = 90, width = 200, height = 180 }) => {
         <Pie
           data={baseData}
           dataKey="value"
-          cx={width / 2}
-          cy={height / 2}
+          cx={halfWidth}
+          cy={halfHeight}
           startAngle={startAngle}
           endAngle={endAngle}
-          innerRadius={height / 2 - 6}
-          outerRadius={height / 2 - 4}
+          innerRadius={halfHeight - 6}
+          outerRadius={halfHeight - 4}
           fill="#58595B"
           paddingAngle={0}
           cornerRadius={4}
@@ -32,12 +34,12 @@ const DonutChart = ({ num = 90, width = 200, height = 180 }) => {
         <Pie
           data={numData}
           dataKey="value"
-          cx={width / 2}
-          cy={height / 2}
+          cx={halfWidth}
+          cy={halfHeight}
           startAngle={startAngle}
           endAngle={endAngle}
-          innerRadius={height / 2 - 9}
-          outerRadius={height / 2 - 1}
+          innerRadius={halfHeight - 9}
+          outerRadius={halfHeight - 1}
           paddingAngle={0}
           cornerRadius={4}
           stroke='none'
