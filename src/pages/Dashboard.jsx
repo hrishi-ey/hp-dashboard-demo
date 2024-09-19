@@ -193,7 +193,7 @@ const Dashboard = () => {
                     <button className=""><Icon name="cog" /></button>
                   </div>
                   {
-                    userData && userData.inventory.stores.children ? <ErrorBoundary><GoogleMapComponent stores={userData.inventory.stores.children} /></ErrorBoundary>: ""
+                    userData && userData.inventory.stores.children ? <GoogleMapComponent stores={userData.inventory.stores.children} />: ""
                   }
                 </div>
               </article>
