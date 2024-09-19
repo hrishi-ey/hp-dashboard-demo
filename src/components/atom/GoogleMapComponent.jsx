@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useCallback, memo } from 'react'
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+import { useNavigate } from "react-router-dom";
 import * as d3 from "d3";
 import { getActualColor } from './Utils';
 
@@ -96,6 +97,8 @@ function GoogleMapComponent({ stores }) {
     },
   ];
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const $wrapper = d3.select(wrapperRef.current);
     
@@ -112,7 +115,6 @@ function GoogleMapComponent({ stores }) {
     // This is just an example of getting and using the map instance!!! don't just blindly copy!
     const bounds = new window.google.maps.LatLngBounds(stores[2].address.position);
     map.fitBounds(bounds);
-    console.log(map.zoom);
 
     setMap(map)
   }, []);
@@ -122,7 +124,7 @@ function GoogleMapComponent({ stores }) {
   }, []);
 
   const handleShowStore = (storeId) => {
-    navigate("/dashboard/stores/" + storeId);
+    navigate("/dashboard/store/" + storeId);
   };
 
   return (
