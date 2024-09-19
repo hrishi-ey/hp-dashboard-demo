@@ -179,7 +179,7 @@ const GoogleMapComponent = ({ stores }) => {
 
   return (
     <div ref={wrapperRef} className='flex-grow w-full h-full relative transition-all'>
-      {map}
+      {map !== null ? map: ""}
     </div>
   );
 }

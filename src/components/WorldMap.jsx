@@ -7,19 +7,12 @@ const WorldMap = () => {
   const mapRef = useRef(null);
   const wrapperRef = useRef(null);
 
-  const [geoData, setGeoData] = useState<any>(null);
+  // const [geoData, setGeoData] = useState(null);
 
   const zoomed = (evt) => {
     let svg = d3.select(mapRef.current);
     svg.selectAll(".mapGroup").attr("transform", evt.transform);
   }
-
-  const zoomOut = () => {
-    // 
-  };
-  const zoomIn = () => {
-    // 
-  };
 
   const getRandomValues = (arr) => {
     const min = 3;
@@ -58,9 +51,9 @@ const WorldMap = () => {
 
   const randomLocations = getRandomValues(randomMarkerPositions);
 
-  useEffect(() => {
-    d3.json("/src/assets/world-map.json").then(setGeoData);
-  }, []);
+  // useEffect(() => {
+  //   d3.json("/src/assets/world-map.json").then(setGeoData);
+  // }, []);
 
   useEffect(() => {
     if(geoData) {
@@ -98,8 +91,8 @@ const WorldMap = () => {
   return <div className='w-full h-full relative' ref={wrapperRef}>
     <svg ref={mapRef}></svg>
     <div className="absolute left-[10px] bottom-[0]">
-      <button onClick={zoomOut} className='w-[20px] h-[20px] border border-white leading-[4px] text-center rounded-full cursor-pointer mr-3'>-</button>
-      <button onClick={zoomIn} className='w-[20px] h-[20px] border border-white leading-[20px] text-center rounded-full cursor-pointer'>+</button>
+      <button className='w-[20px] h-[20px] border border-white leading-[4px] text-center rounded-full cursor-pointer mr-3'>-</button>
+      <button className='w-[20px] h-[20px] border border-white leading-[20px] text-center rounded-full cursor-pointer'>+</button>
     </div>
   </div>;
 };
