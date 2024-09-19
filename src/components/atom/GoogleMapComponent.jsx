@@ -115,6 +115,8 @@ function GoogleMapComponent({ stores }) {
     // This is just an example of getting and using the map instance!!! don't just blindly copy!
     const bounds = new window.google.maps.LatLngBounds(stores[2].address.position);
     map.fitBounds(bounds);
+    map.setZoom(2)
+
 
     setMap(map)
   }, []);
