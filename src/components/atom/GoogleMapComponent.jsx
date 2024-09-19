@@ -3,6 +3,7 @@ import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { useNavigate } from "react-router-dom";
 import * as d3 from "d3";
 import { getActualColor } from "./Utils";
+import ErrorBoundary from "../ErrorBoundary";
 
 const GoogleMapComponent = ({ stores }) => {
   const wrapperRef = useRef(null);
@@ -178,9 +179,11 @@ const GoogleMapComponent = ({ stores }) => {
 
 
   return (
-    <div ref={wrapperRef} className='flex-grow w-full h-full relative transition-all'>
-      {map !== null ? map: ""}
-    </div>
+    <ErrorBoundary>
+      <div ref={wrapperRef} className='flex-grow w-full h-full relative transition-all'>
+        {map !== null ? map: ""}
+      </div>
+    </ErrorBoundary>
   );
 }
 

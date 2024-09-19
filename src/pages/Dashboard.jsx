@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom";
 import GoogleMapComponent from "../components/atom/GoogleMapComponent";
 import Icon from "../components/atom/Icon";
 import MapWithFilters from "../components/MapWithFilters";
+import ErrorBoundary from "../components/ErrorBoundary";
 
 const Dashboard = () => {
   const userData = useSelector((state) => state.user.inventory);
@@ -192,7 +193,7 @@ const Dashboard = () => {
                     <button className=""><Icon name="cog" /></button>
                   </div>
                   {
-                    userData && userData.inventory.stores.children ? <GoogleMapComponent stores={userData.inventory.stores.children} />: ""
+                    userData && userData.inventory.stores.children ? <ErrorBoundary><GoogleMapComponent stores={userData.inventory.stores.children} /></ErrorBoundary>: ""
                   }
                 </div>
               </article>

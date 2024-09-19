@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { logoutUser } from "../store/UserSlice";
 import ComingSoon from "../components/ComingSoon";
 import Breadcrumbs from "../components/Breadcrumbs";
+import hpLogo from "../assets/img/cont/henny-penny-logo.svg";
 
 const DashboardRoot = () => {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ const DashboardRoot = () => {
       {comingSoon ? comingSoon : ""}
       <aside className="fixed left-0 top-0 bottom-0 w-[220px] max-w-[220px] px-[12px] border-r border-r-black flex flex-col bg-panel">
         <header className="w-full py-4 text-center">
-          <a href="/"><img src="/src/assets/img/cont/henny-penny-logo.svg" className="inline-block outline-none" alt="" /></a>
+          <a href="/"><img src={hpLogo} className="inline-block outline-none" alt="" /></a>
         </header>
         <nav className="grow w-full">
           <ul className="w-full">
