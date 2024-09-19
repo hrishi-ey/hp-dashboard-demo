@@ -65,13 +65,11 @@ const Dashboard = () => {
         }
         for (let index = 0; index < userData.inventory.devices.children.length; index++) {
           let element = userData.inventory.devices.children[index];
-          console.log(element.parentId);
           
           if(element.parentId && element.parentId === id) {
             updatedList.push(element);
           }
         }
-        console.log(updatedList, "-- updated list");
         
         setDataSet(updatedData);
         setTableListData(updatedList);
@@ -98,16 +96,12 @@ const Dashboard = () => {
     setPopupData(<div onClick={() => { setPopupData(null); }} className="fixed left-0 top-0 right-0 bottom-0 backdrop-blur-sm bg-black/[0.5] z-40 flex items-center justify-center"><MapWithFilters stores={userData.inventory.stores.children} /></div>);
   }
 
-  useEffect(() => {
-    console.log(tableDataType, tableListData);
-  }, [tableDataType]);
-
   return (
     <>
       {popupData ? popupData : ""}
-      <nav className="py-2 w-full px-2">
+      {/* <nav className="py-2 w-full px-2">
         <Breadcrumbs /> 
-      </nav>
+      </nav> */}
       <div className="p-2 h-full flex flex-col gap-2">
         <div className="flex-grow flex gap-2 min-h-[220px]">
           <article className="flex-grow w-1/4">

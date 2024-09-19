@@ -17,8 +17,8 @@ const Login = () => {
 	const {loading, error} = useSelector((state) => state.user);
   // const initialValues = { email: "", password: "" };
   const initialValues = {
-		email: "",
-		password: ""
+		email: "hrishi.hpadmn@gmail.com",
+		password: "HP-Hrishi@855"
 	};
 
 	// Store_1_1_1 = First distributor, First Owner Operator, First Store Manager

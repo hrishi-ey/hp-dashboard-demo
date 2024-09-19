@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../store/UserSlice";
 import ComingSoon from "../components/ComingSoon";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 const DashboardRoot = () => {
   const dispatch = useDispatch();
@@ -98,6 +99,9 @@ const DashboardRoot = () => {
             </div>) : "" }
         </header>
         <section className="grow">
+        <nav className="py-2 w-full px-2">
+          <Breadcrumbs /> 
+        </nav>
           <Outlet />
         </section>
         {/* ========== TOP HEADER ENDS ========== */}
