@@ -20,7 +20,7 @@ const MapWithFilters = ({ stores }) => {
           <Icon name="closeBlue" size={14} />
         </button>
       </header>
-      <div className="w-[100%] mt-6">
+      <div className="w-[100%] flex-grow h-[300px] mt-6">
         <GoogleMapComponent stores={stores} />
       </div>
     </div>
