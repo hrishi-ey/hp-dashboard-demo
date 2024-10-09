@@ -15,12 +15,6 @@ const Assets = () => {
   const [dataSet, setDataSet] = useState(null);
   const [tableDataType, setTableDataType] = useState("");
   const [tableListData, setTableListData] = useState([]);
-  const [equipmentData, setEquipmentData] = useState({
-    registeredEquipements: 0,
-    onlineEquipments: 0,
-    operators: 0,
-    locations: 0,
-  });
 
   const [popupData, setPopupData] = useState(null);
 
@@ -35,32 +29,21 @@ const Assets = () => {
 
   useEffect(() => {
     if(userData) {
-      setDataSet(userData.devices);
-      setTableListData([...userData.devices.children]);
+      if(ownerType) {
+        
+      } else {
+        if(userData.userType === "admin") {
+          setDataSet(userData.owners);
+        } else if(userData.userType === "owner") {
+          setDataSet(userData.stores);
+        } else if(userData.userType === "store") {
+          setDataSet(userData.devices);
+        }
+        setTableListData([...userData.devices.children]);
+      }
       setTableDataType("assets");
     }
-    let onlineDevices = 0;
-      let operators = [];
-      let loc = [];
-      for (let index = 0; index < userData.devices.children.length; index++) {
-        let dev = userData.devices.children[index];
-        if(dev.c8y_Connection.status === "CONNECTED") {
-          onlineDevices += 1;
-        }
-        if(!operators.includes(dev.hp_OwnerOperatorId)) {
-          operators.push(dev.hp_OwnerOperatorId);
-        }
-        // if(!locations.includes(dev.address.line1)) {
-        //   locations.push(dev.address.line1);
-        // }
-      }
-      
-      setEquipmentData({
-        registeredEquipements: userData.devices.children.length,
-        onlineEquipments: onlineDevices,
-        operators: operators.length,
-        locations: loc.length
-      });
+    
   }, [userData]);
 
   const showFullMap = () => {
@@ -88,19 +71,19 @@ const Assets = () => {
               <div className="flex-grow gap-6 flex items-center justify-center text-left">
                 <div className="">
                   <p className="text-sidebaricontext text-[12px] mb-2">Registered Equipments</p>
-                  <h1 className="text-white text-3xl">{equipmentData.registeredEquipements}</h1>
+                  <h1 className="text-white text-3xl">{dataSet && dataSet.registeredEquipements ? dataSet.registeredEquipements : ""}</h1>
                 </div>
                 <div className="">
                   <p className="text-sidebaricontext text-[12px] mb-2">Online Equipments</p>
-                  <h1 className="text-white text-3xl">{equipmentData.onlineEquipments}</h1>
+                  <h1 className="text-white text-3xl">{dataSet && dataSet.onlineEquipments ? dataSet.onlineEquipments : ""}</h1>
                 </div>
                 <div className="">
                   <p className="text-sidebaricontext text-[12px] mb-2">Operators</p>
-                  <h1 className="text-white text-3xl">{equipmentData.operators}</h1>
+                  <h1 className="text-white text-3xl">{dataSet && dataSet.operators ? dataSet.operators : ""}</h1>
                 </div>
                 <div className="">
                   <p className="text-sidebaricontext text-[12px] mb-2">Locations</p>
-                  <h1 className="text-white text-3xl">{equipmentData.locations}</h1>
+                  <h1 className="text-white text-3xl">{dataSet && dataSet.locations ? dataSet.registeredEquipements : ""}</h1>
                 </div>
               </div>
             </div>

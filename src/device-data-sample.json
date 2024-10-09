@@ -1,0 +1,138 @@
+{
+    "self": "https://t525030185.us.cumulocity.com/inventory/managedObjects/485346",
+    "id": "485346",
+    "type": "F5",
+    "name": "Device0",
+    "lastUpdated": "2024-10-08T10:04:16.564Z",
+    "creationTime": "2024-07-30T15:33:55.201Z",
+    "owner": "avuppulury@hennypenny.com",
+    "childDevices": {
+        "self": "https://t525030185.us.cumulocity.com/inventory/managedObjects/485346/childDevices",
+        "references": []
+    },
+    "childAssets": {
+        "self": "https://t525030185.us.cumulocity.com/inventory/managedObjects/485346/childAssets",
+        "references": []
+    },
+    "childAdditions": {
+        "self": "https://t525030185.us.cumulocity.com/inventory/managedObjects/485346/childAdditions",
+        "references": [
+            {
+                "self": "https://t525030185.us.cumulocity.com/inventory/managedObjects/485346/childAdditions/302303",
+                "managedObject": {
+                    "self": "https://t525030185.us.cumulocity.com/inventory/managedObjects/302303",
+                    "id": "302303"
+                }
+            }
+        ]
+    },
+    "deviceParents": {
+        "self": "https://t525030185.us.cumulocity.com/inventory/managedObjects/485346/deviceParents",
+        "references": []
+    },
+    "assetParents": {
+        "self": "https://t525030185.us.cumulocity.com/inventory/managedObjects/485346/assetParents",
+        "references": []
+    },
+    "additionParents": {
+        "self": "https://t525030185.us.cumulocity.com/inventory/managedObjects/485346/additionParents",
+        "references": []
+    },
+    "c8y_Availability": {
+        "lastMessage": "2024-10-08T10:04:16.690Z",
+        "status": "UNAVAILABLE"
+    },
+    "com_cumulocity_model_Agent": {},
+    "c8y_Connection": {
+        "status": "DISCONNECTED"
+    },
+    "c8y_RequiredAvailability": {
+        "responseInterval": 10
+    },
+    "store_details": {
+        "address": {
+            "zip": "12345",
+            "country": "USA",
+            "city": "test",
+            "line2": "",
+            "line1": "1234 test st"
+        },
+        "phone": "111-111-1234",
+        "name": "store_1",
+        "email": "store_1@hennypenny.com"
+    },
+    "hr_HierarchyHash": "-915291642889580841",
+    "c8y_SupportedOperations": [
+        "c8y_Restart"
+    ],
+    "hp_OwnerOperatorId": "8026281",
+    "c8y_ActiveAlarmsStatus": {
+        "critical": 0,
+        "major": 1,
+        "minor": 0,
+        "warning": 0
+    },
+    "owner_details": {
+        "address": {
+            "zip": "12345",
+            "country": "USA",
+            "city": "test",
+            "line2": "",
+            "line1": "1234 test st"
+        },
+        "phone": "111-222-1234",
+        "name": "owner_operator_1",
+        "email": "owner_operator_1@hennypenny.com"
+    },
+    "c8y_IsDevice": {},
+    "F5EC_StartupOrSettingsData": {
+        "Language": "en-US",
+        "serNum": "LC2311018",
+        "FryMdl": "OFE511",
+        "DispCnfg": "REAR",
+        "FryCnfg": "SSSS"
+    },
+    "hp_Commissioning_Status": "Executing",
+    "hp_HierarchyHash": "138211217877817087",
+    "hp_StoreId": "7126197",
+    "time": "2023-01-17T16:36:27+00:00",
+    "hp_Commissioning_details": {
+        "owner_details": {
+            "address": {
+                "zip": "45201",
+                "country": "United States of America",
+                "city": "Cincinnati",
+                "line2": "Downtown Cincinnati",
+                "line1": "2, Doctor's Paradise"
+            },
+            "phone": "+1(330)245-4481",
+            "name": "Amir Pasdar",
+            "email": "apasdar@hennypenny.com"
+        },
+        "store_details": {
+            "address": {
+                "zip": "64082",
+                "country": "United States Of America",
+                "city": "Missouri",
+                "line2": " M150 Highway Lee's Summit",
+                "line1": "125 Southwest"
+            },
+            "phone": "(913) 829-3701",
+            "name": "McDonalds #14",
+            "email": "rusty.i.rice@Partners.mcd.com"
+        },
+        "distributor_details": {
+            "address": {
+                "zip": "",
+                "country": "",
+                "city": "",
+                "line2": "",
+                "line1": ""
+            },
+            "phone": "",
+            "name": "",
+            "email": ""
+        },
+        "eula_flag": "false"
+    }
+}

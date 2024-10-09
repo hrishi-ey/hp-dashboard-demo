@@ -3,7 +3,7 @@ import AuthProvider from './components/AuthProvider'
 import router from './routes/router'
 
 const App = () => {
-  return <AuthProvider isSignedIn={true}>
+  return <AuthProvider>
     <RouterProvider router={router}></RouterProvider>
   </AuthProvider>;
 }

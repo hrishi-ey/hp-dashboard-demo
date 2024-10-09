@@ -8,31 +8,61 @@ import InfoChartPanel from "../components/InfoChartPanel";
 import Icon from "../components/atom/Icon";
 import GoogleMapComponent from "../components/atom/GoogleMapComponent";
 import MapWithFilters from "../components/MapWithFilters";
+import Panel from "../components/atom/Panel";
+import { useParams } from "react-router-dom";
 
 const Operation = () => {
   const userData = useSelector((state) => state.user.inventory);  
   const [dataSet, setDataSet] = useState(null);
   const [tableDataType, setTableDataType] = useState("");
   const [tableListData, setTableListData] = useState([]);
+  const [equipmentData, setEquipmentData] = useState({
+    registeredEquipements: 0,
+    onlineEquipments: 0,
+    operators: 0,
+    locations: 0,
+  });
 
   const [popupData, setPopupData] = useState(null);
 
-  useEffect(() => {
-    if(userData.inventory.userType === "admin") {
-      setDataSet(userData.inventory.owners);
-    } else if(userData.inventory.userType === "owner") {
-      setDataSet(userData.inventory.stores);
-    } else if(userData.inventory.userType === "store") {
-      setDataSet(userData.inventory.devices);
-    }
-    setTableDataType("efficiency");
-    setTableListData([...userData.inventory.devices.children]);
-  }, [userData]);
+  const params = useParams();
+  let ownerType = null;
+  let id = null;
 
-  // useEffect(() => {
-  //   console.log(tableListData, tableDataType, dataSet);
-    
-  // }, [tableListData]);
+  if(params) {
+    ownerType = params.dataType || null;
+    id = params.id || null;
+  }
+
+  useEffect(() => {
+    if(userData) {
+      setDataSet(userData.baseData);
+      setTableListData([...userData.devices.children]);
+      setTableDataType("efficiency");
+      
+      let onlineDevices = 0;
+      let operators = [];
+      let locations = [];
+      for (let index = 0; index < userData.devices.children.length; index++) {
+        let dev = userData.devices.children[index];
+        if(dev.c8y_Connection.status === "CONNECTED") {
+          onlineDevices += 1;
+        }
+        if(!operators.includes(dev.hp_OwnerOperatorId)) {
+          operators.push(dev.hp_OwnerOperatorId);
+        }
+        if(!locations.includes(dev.hp_Commissioning_details && dev.hp_Commissioning_details.store_details  && dev.hp_Commissioning_details.store_details.zip)) {
+          locations.push(dev.hp_Commissioning_details.store_details.zip);
+        }
+      }
+      setEquipmentData({
+        registeredEquipements: userData.devices.children.length,
+        onlineEquipments: onlineDevices,
+        operators: operators.length,
+        locations: locations.length
+      });
+    }
+  }, [userData]);
 
   const showFullMap = () => {
     setPopupData(<div onClick={() => { setPopupData(null); }} className="fixed left-0 top-0 right-0 bottom-0 backdrop-blur-sm bg-black/[0.5] z-40 flex items-center justify-center"><MapWithFilters stores={userData.inventory.stores.children} /></div>);
@@ -43,13 +73,13 @@ const Operation = () => {
       {popupData ? popupData : ""}
       <div className="flex-grow flex gap-2 min-h-[220px]">
         <article className="flex-grow w-1/3">
-          {dataSet !== null ? <InfoChartPanel title="Oil Efficiency" num={dataSet.oilEfficiency} /> : <InfoChartPanel title="Uptime" num={90} />}
+          {dataSet !== null ? <InfoChartPanel title="Oil Efficiency" num={dataSet.oilEfficiency} indicator={dataSet.oilEfficiencyIndicator} /> : <InfoChartPanel title="Uptime" num={90} />}
         </article>
         <article className="flex-grow w-1/3">
-          {dataSet !== null ? <InfoChartPanel title="Energy Efficiency" num={dataSet.energyEfficiency} /> : <InfoChartPanel title="Uptime" num={90} />}
+          {dataSet !== null ? <InfoChartPanel title="Energy Efficiency" num={dataSet.energyEfficiency} indicator={dataSet.energyEfficiency} /> : <InfoChartPanel title="Uptime" num={90} />}
         </article>
-        <div className="flex-grow w-1/3">
-        <div className='w-full h-full bg-panel border border-panelborder flex flex-col'>
+        <article className="flex-grow w-1/3">
+          <Panel>
             <div className="flex items-center">
               <div className="flex-grow">
                 <PanelHeader text="Assets" />
@@ -62,31 +92,33 @@ const Operation = () => {
               <p className="text-[10px] text-left text-sidebaricontext">
                 {getCurrentDateTime()}
               </p>
-              <div className="flex-grow gap-6 flex items-center justify-center text-left">
+              <div className="flex-grow gap-6 flex items-center text-left mt-6">
                 <div className="w-1/2">
-                  <p className="text-sidebaricontext text-[12px] mb-2">Registered Equipments</p>
-                  <h1 className="text-white text-3xl">{dataSet && dataSet.registeredEquipements ? dataSet.registeredEquipements : ""}</h1>
+                  <p className="text-sidebaricontext text-[10px] mb-2">Registered Equipments</p>
+                  <h1 className="text-white text-3xl">{ equipmentData.registeredEquipements }</h1>
                 </div>
                 <div className="w-1/2">
-                  <p className="text-sidebaricontext text-[12px] mb-2">Online Equipments</p>
-                  <h1 className="text-white text-3xl">{dataSet && dataSet.onlineEquipments ? dataSet.onlineEquipments : ""}</h1>
+                  <p className="text-sidebaricontext text-[10px] mb-2">Online Equipments</p>
+                  <h1 className="text-white text-3xl">{ equipmentData.onlineEquipments }</h1>
+                </div>
+              </div>
+              <div className="flex-grow gap-6 flex items-center text-left mt-2">
+                <div className="w-1/2">
+                  <p className="text-sidebaricontext text-[10px] mb-2">Operators</p>
+                  <h1 className="text-white text-3xl">{ equipmentData.operators }</h1>
                 </div>
                 <div className="w-1/2">
-                  <p className="text-sidebaricontext text-[12px] mb-2"><br />Operators</p>
-                  <h1 className="text-white text-3xl">{dataSet && dataSet.operators ? dataSet.operators : ""}</h1>
-                </div>
-                <div className="w-1/2">
-                  <p className="text-sidebaricontext text-[12px] mb-2"><br />Locations</p>
-                  <h1 className="text-white text-3xl">{dataSet && dataSet.locations ? dataSet.registeredEquipements : ""}</h1>
+                  <p className="text-sidebaricontext text-[10px] mb-2">Locations</p>
+                  <h1 className="text-white text-3xl">{ equipmentData.locations }</h1>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </Panel>
+        </article>
       </div>
       <div className="flex-grow-2 flex gap-2">
-        <div className="flex-grow">
-          <article className="w-full h-full bg-panel border border-panelborder">
+        <div className="w-3/4">
+          <Panel>
             <PanelHeader text="Locations" />
             <div className="p-3">
               {tableDataType !== "" && tableListData.length > 0 ?
@@ -94,12 +126,12 @@ const Operation = () => {
                 <p>No data found</p>
               }
             </div>
-          </article>
+          </Panel>
         </div>
         <div className="w-1/4 flex flex-col gap-2">
           <div className="flex-grow">
             <article className="h-full">
-              <div className='w-full h-full bg-panel border border-panelborder flex flex-col'>
+              <Panel>
                 <div className="flex items-center">
                   <div className="flex-grow">
                     <PanelHeader text="Errors" />
@@ -117,7 +149,7 @@ const Operation = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Panel>
             </article>
           </div>
           <div className="flex-grow">
@@ -131,7 +163,7 @@ const Operation = () => {
                   <button className=""><Icon name="cog" /></button>
                 </div>
                 {
-                  userData && userData.inventory.stores.children ? <GoogleMapComponent stores={userData.inventory.stores.children} />: ""
+                  userData && userData.stores.children ? <GoogleMapComponent stores={userData.stores.children} />: ""
                 }
               </div>
             </article>

@@ -1,9 +1,8 @@
 // Donut Chart Component:
-import { useState } from 'react';
-import { getActualColor } from './Utils';
+import { getColor } from './Utils';
 import { PieChart, Pie, Cell, Label, Text, ResponsiveContainer } from "recharts";
 
-const DonutChart = ({ num = 90, width = 200, height = 180 }) => {
+const DonutChart = ({ num = 90, width = 200, height = 180, indicator = 0 }) => {
 
   const baseData = [{ name: "A", value: 100 }];
   const numData = [{ name: "A", value: num }, { name: "B", value: (100 - num) }];
@@ -46,7 +45,7 @@ const DonutChart = ({ num = 90, width = 200, height = 180 }) => {
         >
           {
             numData.map((entry, index) => {
-              const fill = index === 1 ? "transparent" : getActualColor(num);
+              const fill = index === 1 ? "transparent" : getColor(indicator);
               return <Cell key={`cell-${index}`} fill={fill} />
             })
           }
